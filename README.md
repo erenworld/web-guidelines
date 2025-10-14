@@ -3,8 +3,6 @@
 I simply enjoy using fast websites more than slow ones.  
 This is a living, non-exhaustive list of the decisions and principles that guide my approach.
 
----
-
 ## Interactions
 
 - **Design and optimize for two classes of users: anonymous and logged-in.**  
@@ -15,8 +13,6 @@ This is a living, non-exhaustive list of the decisions and principles that guide
 
 - **You can never serve a webpage faster than you can render it on the server.**  
   Simply displaying the server render time in the upper-right corner of every page forced us to fix performance regressions and omissions.
-
----
 
 ## Minimizing HTTP Requests
 
@@ -30,8 +26,6 @@ This is a living, non-exhaustive list of the decisions and principles that guide
 
 - **Optimize for empty caches**: 40–60% of daily visitors come with an empty cache. Making your site fast for first-time visitors has the greatest impact on user experience.
 
----
-
 ## Content Delivery & Caching
 
 - **Use a Content Delivery Network (CDN)**: The closer the server to the user, the faster the load time. Distribute content geographically to improve perceived speed.
@@ -40,16 +34,12 @@ This is a living, non-exhaustive list of the decisions and principles that guide
   - *Static components*: Use far-future `Expires` headers (“Never expire” policy). Update filenames (e.g., `yahoo_2.0.6.js`) when components change—ideally automated in the build process.
   - *Dynamic components*: Use appropriate `Cache-Control` headers for conditional requests.
 
----
-
 ## Compression
 
 - **Gzip components**: Compression reduces response sizes by up to 70%. About 90% of browsers support gzip.  
   - Apache 1.3 uses `mod_gzip`; Apache 2.x uses `mod_deflate`.  
   - Compress HTML, scripts, stylesheets, XML, and JSON.  
   - Don’t gzip images or PDFs—they’re already compressed and doing so wastes CPU and may increase file size.
-
----
 
 ## Loading Order
 
@@ -58,8 +48,6 @@ This is a living, non-exhaustive list of the decisions and principles that guide
 - **Put scripts at the bottom**: Scripts block parallel downloads. While a script is downloading, the browser won’t start other requests—even from different hostnames.  
   If a script must use `document.write`, it cannot be moved. In those cases, consider using the `defer` attribute to allow rendering to continue.
 
----
-
 ## CSS and JavaScript Best Practices
 
 - **Avoid CSS expressions**: They can trigger thousands of evaluations (e.g., from mouse movement), causing major performance issues.
@@ -67,7 +55,3 @@ This is a living, non-exhaustive list of the decisions and principles that guide
 - **Use external files when possible**:  
   External JavaScript and CSS benefit from browser caching, reducing subsequent page load times. Inline assets increase HTML size and are re-downloaded with every request.  
   However, for homepages or single-page sessions, inlining key assets may improve perceived speed. A hybrid approach works well—inline critical CSS/JS for first load, and lazy-load full external files afterward.
-
----
-
-✅ *Fast websites aren’t just nicer—they respect the user’s time.*
